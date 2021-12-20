@@ -18,9 +18,14 @@
 package com.example.android.devbyteviewer.repository
 
 import com.example.android.devbyteviewer.database.VideosDatabase
+import com.example.android.devbyteviewer.network.Network
+import com.example.android.devbyteviewer.network.asDatabaseModel
 
 class VideosRepository(private val database: VideosDatabase) {
 
-    suspend fun refreshVideos() {}
+    suspend fun refreshVideos() {
+        val playlist = Network.devbytes.getPlaylist().await()
+        database.videoDao.insertAll(*playlist.asDatabaseModel())
+    }
 
 }
