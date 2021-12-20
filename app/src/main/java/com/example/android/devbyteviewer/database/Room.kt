@@ -17,8 +17,10 @@
 
 package com.example.android.devbyteviewer.database
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.bumptech.glide.load.resource.bitmap.VideoDecoder
 
 @Dao
 interface VideoDao {
@@ -36,3 +38,12 @@ abstract class VideosDatabase: RoomDatabase() {
 }
 
 private lateinit var INSTANCE: VideosDatabase
+
+fun getDatabase(context: Context): VideosDatabase {
+    if (!::INSTANCE.isInitialized) {
+        INSTANCE = Room.databaseBuilder(context.applicationContext, VideosDatabase::class.java,
+        "videos").build()
+    }
+    return INSTANCE
+
+}
