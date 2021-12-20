@@ -21,4 +21,6 @@ import com.example.android.devbyteviewer.database.VideosDatabase
 
 class VideosRepository(private val database: VideosDatabase) {
 
+    suspend fun refreshVideos() {}
+
 }
