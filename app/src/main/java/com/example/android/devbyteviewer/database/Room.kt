@@ -16,3 +16,10 @@
  */
 
 package com.example.android.devbyteviewer.database
+
+import androidx.room.Dao
+
+@Dao
+interface VideoDao {
+
+}
