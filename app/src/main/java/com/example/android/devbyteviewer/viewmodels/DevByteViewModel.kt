@@ -68,6 +68,8 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    val playlist = videosRepository.videos
+
 
     /**
      * Cancel all coroutines when the ViewModel is cleared
