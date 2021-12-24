@@ -23,6 +23,7 @@ import com.example.android.devbyteviewer.database.getDatabase
 import com.example.android.devbyteviewer.domain.Video
 import com.example.android.devbyteviewer.network.Network
 import com.example.android.devbyteviewer.network.asDomainModel
+import com.example.android.devbyteviewer.repository.VideosRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -59,6 +60,7 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val database = getDatabase(application)
+    private val videosRepository = VideosRepository(database)
 
 
     /**
