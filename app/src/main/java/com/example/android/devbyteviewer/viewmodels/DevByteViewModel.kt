@@ -62,6 +62,12 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
     private val database = getDatabase(application)
     private val videosRepository = VideosRepository(database)
 
+    init {
+        viewModelScope.launch {
+            videosRepository.refreshVideos()
+        }
+    }
+
 
     /**
      * Cancel all coroutines when the ViewModel is cleared
