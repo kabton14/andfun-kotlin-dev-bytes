@@ -27,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.util.concurrent.CountDownLatch
 
 /**
  * DevByteViewModel designed to store and manage UI-related data in a lifecycle conscious way. This
@@ -39,6 +40,32 @@ import java.io.IOException
  * or fragment lifecycle events.
  */
 class DevByteViewModel(application: Application) : AndroidViewModel(application) {
+
+    /**
+     * This is the job for all coroutines started by this ViewModel.
+     *
+     * Cancelling this job will cancel all coroutines started by this ViewModel.
+     */
+    private val viewModelJob = SupervisorJob()
+
+
+    /**
+     * This is the main scope for all coroutines launched by MainViewModel.
+     *
+     * Since we pass viewModelJob, you can cancel all coroutines launched by uiScope by calling
+     * viewModelJob.cancel()
+     */
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+
+    /**
+     * Cancel all coroutines when the ViewModel is cleared
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
     /**
      * Factory for constructing DevByteViewModel with parameter
