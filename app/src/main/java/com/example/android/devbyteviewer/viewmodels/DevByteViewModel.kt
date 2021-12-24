@@ -19,6 +19,7 @@ package com.example.android.devbyteviewer.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.android.devbyteviewer.database.getDatabase
 import com.example.android.devbyteviewer.domain.Video
 import com.example.android.devbyteviewer.network.Network
 import com.example.android.devbyteviewer.network.asDomainModel
@@ -56,6 +57,8 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
      * viewModelJob.cancel()
      */
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    private val database = getDatabase(application)
 
 
     /**
