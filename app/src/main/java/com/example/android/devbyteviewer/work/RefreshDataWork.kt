@@ -16,3 +16,12 @@
  */
 
 package com.example.android.devbyteviewer.work
+
+import android.content.Context
+import androidx.work.CoroutineWorker
+import androidx.work.WorkerParameters
+
+class RefreshDataWork(appContext: Context, params: WorkerParameters):
+        CoroutineWorker(appContext, params) {
+
+        }
