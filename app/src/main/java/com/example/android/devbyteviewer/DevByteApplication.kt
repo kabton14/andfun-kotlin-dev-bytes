@@ -20,6 +20,7 @@ package com.example.android.devbyteviewer
 import android.app.Application
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -38,5 +39,12 @@ class DevByteApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
+        delayedInit()
+    }
+
+    private fun delayedInit() {
+        applicationScope.launch {
+            Thread.sleep(5000)
+        }
     }
 }
