@@ -24,7 +24,7 @@ import com.example.android.devbyteviewer.database.getDatabase
 import com.example.android.devbyteviewer.repository.VideosRepository
 import retrofit2.HttpException
 
-class RefreshDataWork(appContext: Context, params: WorkerParameters):
+class RefreshDataWorker(appContext: Context, params: WorkerParameters):
         CoroutineWorker(appContext, params) {
 
     companion object {
